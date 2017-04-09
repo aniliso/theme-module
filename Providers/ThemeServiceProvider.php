@@ -42,6 +42,9 @@ class ThemeServiceProvider extends ServiceProvider
         if(env('APP_KEY')) {
             $template = setting('core::template');
             $this->loadTranslationsFrom(base_path("Themes/{$template}/lang"), 'themes');
+            foreach (\File::glob(base_path("Themes/{$template}/presenter/*.php")) as $filename) {
+                include_once ($filename);
+            }
         }
     }
 
