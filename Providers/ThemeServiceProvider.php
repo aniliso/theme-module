@@ -17,7 +17,7 @@ class ThemeServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
     /**
      * Register the service provider.
@@ -30,6 +30,7 @@ class ThemeServiceProvider extends ServiceProvider
         $this->registerWidgets();
         $this->registerFacade();
         $this->registerCommands();
+        $this->registerPresenters();
     }
 
     public function boot()
@@ -38,14 +39,6 @@ class ThemeServiceProvider extends ServiceProvider
         $this->publishConfig('theme', 'settings');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         //$this->registerThumbnails();
-
-        if(env('APP_KEY')) {
-            $template = setting('core::template');
-            $this->loadTranslationsFrom(base_path("Themes/{$template}/lang"), 'themes');
-            foreach (\File::glob(base_path("Themes/{$template}/presenter/*.php")) as $filename) {
-                include_once ($filename);
-            }
-        }
     }
 
     /**
@@ -129,5 +122,16 @@ class ThemeServiceProvider extends ServiceProvider
         $this->commands([
             LanguagePublishCommand::class
         ]);
+    }
+
+    private function registerPresenters()
+    {
+        if(env('APP_KEY')) {
+            $template = setting('core::template');
+            $this->loadTranslationsFrom(base_path("Themes/{$template}/lang"), 'themes');
+            foreach (\File::glob(base_path("Themes/{$template}/presenter/*.php")) as $filename) {
+                include_once ($filename);
+            }
+        }
     }
 }
