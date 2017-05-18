@@ -36,6 +36,7 @@ return [
         ],
         'position_x' => 'Text Horizontal Position',
         'position_y' => 'Text Vertical Position',
+        'video'      => 'Video',
     ],
     'messages'         => [
         'image not found' => 'Image not found'

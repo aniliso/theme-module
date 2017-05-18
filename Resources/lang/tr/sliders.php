@@ -36,6 +36,7 @@ return [
         ],
         'position_x' => 'Yazı Yatay Pozisyonu',
         'position_y' => 'Yazı Dikey Pozisyonu',
+        'video'      => 'Video',
     ],
     'messages'         => [
         'image not found' => 'Resim Bulunamadı'

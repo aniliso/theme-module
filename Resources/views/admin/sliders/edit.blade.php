@@ -30,6 +30,10 @@
                         </div>
                     @endforeach
 
+                        <div class="col-md-12">
+                            {!! Form::normalInput("video", trans('theme::sliders.form.video'), $errors, $slider) !!}
+                        </div>
+
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
                         <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>

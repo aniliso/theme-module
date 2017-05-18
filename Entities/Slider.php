@@ -16,7 +16,7 @@ class Slider extends Model
 
     protected $table = 'theme__sliders';
     public $translatedAttributes = ['title', 'sub_title', 'content', 'link_title', 'url', 'uri', 'target'];
-    protected $fillable = ['page_id', 'title', 'sub_title', 'content', 'link_type', 'url', 'uri', 'link_title', 'target', 'ordering', 'status', 'position_x', 'position_y'];
+    protected $fillable = ['page_id', 'title', 'sub_title', 'content', 'link_type', 'url', 'uri', 'link_title', 'target', 'ordering', 'status', 'position_x', 'position_y', 'video'];
 
     protected $presenter = SliderPresenter::class;
 
