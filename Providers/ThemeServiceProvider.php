@@ -4,14 +4,17 @@ namespace Modules\Theme\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Modules\Core\Events\BuildingSidebar;
+use Modules\Core\Traits\CanGetSidebarClassForModule;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Media\Image\ThumbnailManager;
 use Modules\Theme\Console\LanguagePublishCommand;
+use Modules\Theme\Events\Handlers\RegisterThemeSidebar;
 use Modules\Theme\Facades\SlideFacade;
 
 class ThemeServiceProvider extends ServiceProvider
 {
-    use CanPublishConfiguration;
+    use CanPublishConfiguration, CanGetSidebarClassForModule;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -31,6 +34,11 @@ class ThemeServiceProvider extends ServiceProvider
         $this->registerFacade();
         $this->registerCommands();
         $this->registerPresenters();
+
+        $this->app['events']->listen(
+            BuildingSidebar::class,
+            $this->getSidebarClassForModule('theme', RegisterThemeSidebar::class)
+        );
     }
 
     public function boot()

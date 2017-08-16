@@ -39,7 +39,7 @@ class CreatethemeSlidersTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::table('store__products', function (Blueprint $table) {
+        Schema::table('theme__sliders', function (Blueprint $table) {
             $table->dropForeign(['slide_id']);
         });
         Schema::dropIfExists('theme__sliders');
