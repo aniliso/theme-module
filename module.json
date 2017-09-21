@@ -8,8 +8,7 @@
     "order": 70,
     "providers": [
         "Modules\\Theme\\Providers\\ThemeServiceProvider",
-        "Modules\\Theme\\Providers\\RouteServiceProvider",
-        "Modules\\Theme\\Providers\\EventServiceProvider"
+        "Modules\\Theme\\Providers\\RouteServiceProvider"
     ],
     "aliases": [],
     "files": []
