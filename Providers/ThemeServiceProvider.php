@@ -8,6 +8,7 @@ use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Traits\CanGetSidebarClassForModule;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Media\Image\ThumbnailManager;
+use Modules\Theme\Composer\Backend\PositionComposer;
 use Modules\Theme\Console\LanguagePublishCommand;
 use Modules\Theme\Events\Handlers\RegisterThemeSidebar;
 use Modules\Theme\Facades\SlideFacade;
@@ -39,6 +40,8 @@ class ThemeServiceProvider extends ServiceProvider
             BuildingSidebar::class,
             $this->getSidebarClassForModule('theme', RegisterThemeSidebar::class)
         );
+
+        view()->composer('theme::admin.sliders.*', PositionComposer::class);
     }
 
     public function boot()
@@ -46,7 +49,6 @@ class ThemeServiceProvider extends ServiceProvider
         $this->publishConfig('theme', 'permissions');
         $this->publishConfig('theme', 'settings');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        //$this->registerThumbnails();
     }
 
     /**
@@ -85,31 +87,6 @@ class ThemeServiceProvider extends ServiceProvider
                 return new \Modules\Theme\Repositories\Cache\CacheSliderDecorator($repository);
             }
         );
-    }
-
-    private function registerThumbnails()
-    {
-        $this->app[ThumbnailManager::class]->registerThumbnail('sliderImage', [
-            'fit' => [
-                'width' => '1900',
-                'height' => '600',
-                'position' => 'center',
-                'callback' => function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                },
-            ]
-        ]);
-
-        $this->app[ThumbnailManager::class]->registerThumbnail('sliderThumb', [
-            'fit' => [
-                'width' => '100',
-                'height' => '50',
-                'callback' => function ($constraint) {
-                    $constraint->upsize();
-                },
-            ],
-        ]);
     }
 
     private function registerWidgets()

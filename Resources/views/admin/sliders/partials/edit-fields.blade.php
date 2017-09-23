@@ -20,14 +20,7 @@
                 </div>
             </div>
             <div class="col-md-8 link-type-depended link-external">
-                <div class="row">
-                    <div class="col-md-4">
-                        {!! Form::i18nSelect("target", trans('theme::sliders.form.target'), $errors, $lang, $targets, $slider) !!}
-                    </div>
-                    <div class="col-md-8">
-                        {!! Form::i18nInput("url", trans('theme::sliders.form.url'), $errors, $lang, $slider) !!}
-                    </div>
-                </div>
+                {!! Form::i18nSelect("target", trans('theme::sliders.form.target'), $errors, $lang, $targets, $slider) !!}
             </div>
         </div>
     </div>

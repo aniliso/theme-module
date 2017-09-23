@@ -25,6 +25,6 @@ class CreateSlideRequest extends BaseFormRequest
 
     public function messages()
     {
-        return trans('validation');
+        return [];
     }
 }

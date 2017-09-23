@@ -7,14 +7,11 @@
     {!! Form::i18nTextarea("content", trans('theme::sliders.form.content'), $errors, $lang, null, ['class'=>'form-control']) !!}
 
     <div class="row link-type-depended link-external">
-        <div class="col-md-2">
+        <div class="col-md-4">
             {!! Form::i18nSelect("target", trans('theme::sliders.form.target'), $errors, $lang, $targets) !!}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
             {!! Form::i18nInput("link_title", trans('theme::sliders.form.link_title'), $errors, $lang) !!}
-        </div>
-        <div class="col-md-6">
-            {!! Form::i18nInput("url", trans('theme::sliders.form.url'), $errors, $lang) !!}
         </div>
     </div>
 
@@ -35,13 +32,6 @@
     </div>
 
     <div class="form-group link-type-depended link-page">
-        <div class="row">
-            <div class="col-md-4">
-                {!! Form::i18nInput("link_title", trans('theme::sliders.form.link_title'), $errors, $lang) !!}
-            </div>
-            <div class="col-md-8">
-                {!! Form::normalSelect("page_id", trans('theme::sliders.form.page'), $errors, $pages) !!}
-            </div>
-        </div>
+        {!! Form::i18nInput("link_title", trans('theme::sliders.form.link_title'), $errors, $lang) !!}
     </div>
 </div>

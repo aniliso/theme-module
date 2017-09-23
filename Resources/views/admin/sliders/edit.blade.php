@@ -45,6 +45,24 @@
         <div class="col-md-2">
             <div class="box box-primary">
                 <div class="box-body">
+                    <div class="form-group{{ $errors->has("start_at") ? ' has-error' : '' }}">
+                        {!! Form::label("start_at", trans('theme::sliders.form.start_at').':') !!}
+                        <div class='input-group date' id='start_at'>
+                            <input type="text" class="form-control" name="start_at" value="{{ old('start_at', $slider->start_at->format('d.m.Y H:i')) }}" />
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        {!! $errors->first("start_at", '<span class="help-block">:message</span>') !!}
+                    </div>
+
+                    <div class="form-group{{ $errors->has("end_at") ? ' has-error' : '' }}">
+                        {!! Form::label("end_at", trans('theme::sliders.form.end_at').':') !!}
+                        <div class='input-group date' id='end_at'>
+                            <input type="text" class="form-control" name="end_at" value="{{ old('end_at', $slider->end_at->format('d.m.Y H:i')) }}" />
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                        </div>
+                        {!! $errors->first("end_at", '<span class="help-block">:message</span>') !!}
+                    </div>
+
                     {!! Form::hidden('slide_id', $slider->slide->id) !!}
                     {!! Form::normalInput("ordering", trans('theme::sliders.form.ordering'), $errors, $slider) !!}
                     <div class="form-group">
@@ -53,14 +71,7 @@
                         {!! Form::label('status', trans('theme::sliders.form.status')) !!}
                     </div>
                     <hr />
-                    @mediaSingle('sliderImage', $slider)
-                </div>
-            </div>
-            <div class="box box-primary">
-                <div class="box-body">
-                    {!! Form::normalInput("position_x", trans('theme::sliders.form.position_x'), $errors, $slider) !!}
-
-                    {!! Form::normalInput("position_y", trans('theme::sliders.form.position_y'), $errors, $slider) !!}
+                    @mediaSingle('sliderImage', $slider, null, trans('theme::sliders.form.image'))
                 </div>
             </div>
             <div class="box box-primary">
@@ -68,8 +79,11 @@
                     <h3 class="box-title">{{ trans('menu::menu-items.link-type.link type') }}</h3>
                 </div>
                 <div class="box-body">
-                    <div class="link-type-depended link-page">
+                    <div class="form-group link-type-depended link-page">
                         {!! Form::normalSelect("page_id", trans('theme::sliders.form.page'), $errors, $pages, $slider) !!}
+                    </div>
+                    <div class="form-group link-type-depended link-external">
+                        {!! Form::normalInput("url", trans('theme::sliders.form.url'), $errors, $slider) !!}
                     </div>
                     <div class="radio">
                         <input type="radio" id="link-page" name="link_type" value="page" {{ $slider->link_type === 'page' ? ' checked' : '' }}><label for="link-page">{{ trans('theme::sliders.form.link-type.page') }}</label>
@@ -82,6 +96,29 @@
                     </div>
                     <div class="radio">
                         <input type="radio" id="link-none" name="link_type" value="none" {{ $slider->link_type === 'none' ? ' checked' : '' }}><label for="link-none">{{ trans('theme::sliders.form.link-type.none') }}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">{{ trans('theme::sliders.form.text_location') }}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {!! Form::normalSelect('position_h', trans('theme::sliders.form.position_h'), $errors, $positionListH, $slider) !!}
+                        </div>
+                        <div class="col-md-6">
+                            {!! Form::normalInput("position_x", trans('theme::sliders.form.position_x'), $errors, $slider) !!}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {!! Form::normalSelect('position_v', trans('theme::sliders.form.position_v'), $errors, $positionListV, $slider) !!}
+                        </div>
+                        <div class="col-md-6">
+                            {!! Form::normalInput("position_y", trans('theme::sliders.form.position_y'), $errors, $slider) !!}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -134,6 +171,16 @@
             }).on('ifChecked',function(){
                 $('.link-type-depended').hide();
                 $('.link-'+$(this).val()).fadeIn();
+            });
+            $('#start_at').datetimepicker({
+                locale: '<?= App::getLocale() ?>',
+                allowInputToggle: true,
+                format: 'DD.MM.YYYY HH:mm'
+            });
+            $('#end_at').datetimepicker({
+                locale: '<?= App::getLocale() ?>',
+                allowInputToggle: true,
+                format: 'DD.MM.YYYY HH:mm'
             });
         });
     </script>

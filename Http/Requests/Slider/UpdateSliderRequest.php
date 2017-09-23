@@ -9,14 +9,10 @@ class UpdateSliderRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'position_x' => 'integer',
-            'position_y' => 'integer'
+            'ordering' => 'required|integer',
+            'position_x' => 'required|integer',
+            'position_y' => 'required|integer'
         ];
-    }
-
-    public function authorize()
-    {
-        return true;
     }
 
     public function attributes()
@@ -24,8 +20,18 @@ class UpdateSliderRequest extends BaseFormRequest
         return trans('theme::sliders.form');
     }
 
+    public function authorize()
+    {
+        return true;
+    }
+
     public function messages()
     {
-        return trans('validation');
+        return [];
+    }
+
+    public function translationMessages()
+    {
+        return [];
     }
 }

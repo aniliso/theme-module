@@ -5,8 +5,8 @@ namespace Modules\Theme\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Theme\Entities\Slide;
-use Modules\Theme\Http\Requests\Slider\CreateSlideRequest;
-use Modules\Theme\Http\Requests\Slider\UpdateSlideRequest;
+use Modules\Theme\Http\Requests\Slide\CreateSlideRequest;
+use Modules\Theme\Http\Requests\Slide\UpdateSlideRequest;
 use Modules\Theme\Repositories\SlideRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 

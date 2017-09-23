@@ -1,4 +1,4 @@
-<?php namespace Modules\Theme\Http\Requests\Slider;
+<?php namespace Modules\Theme\Http\Requests\Slide;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
@@ -25,6 +25,6 @@ class UpdateSlideRequest extends BaseFormRequest
 
     public function messages()
     {
-        return [];
+        return trans('validation');
     }
 }

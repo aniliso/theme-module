@@ -5,20 +5,31 @@ namespace Modules\Theme\Entities;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
-use Modules\Media\Image\Facade\Imagy;
 use Modules\Media\Support\Traits\MediaRelation;
 use Modules\Page\Entities\Page;
 use Modules\Theme\Presenters\SliderPresenter;
+use Carbon\Carbon;
 
 class Slider extends Model
 {
     use Translatable, MediaRelation, PresentableTrait;
 
     protected $table = 'theme__sliders';
-    public $translatedAttributes = ['title', 'sub_title', 'content', 'link_title', 'url', 'uri', 'target'];
-    protected $fillable = ['page_id', 'title', 'sub_title', 'content', 'link_type', 'url', 'uri', 'link_title', 'target', 'ordering', 'status', 'position_x', 'position_y', 'video'];
+    public $translatedAttributes = ['title', 'sub_title', 'content', 'link_title', 'uri', 'target'];
+    protected $fillable = ['page_id', 'title', 'sub_title', 'content', 'link_type', 'url', 'uri', 'link_title', 'target', 'ordering', 'status', 'position_x', 'position_y', 'video', 'start_at', 'end_at', 'position_h', 'position_v'];
+    protected $dates = ['start_at', 'end_at'];
 
     protected $presenter = SliderPresenter::class;
+
+    public function setStartAtAttribute($value)
+    {
+        return $this->attributes['start_at'] = Carbon::parse($value);
+    }
+
+    public function setEndAtAttribute($value)
+    {
+        return $this->attributes['end_at'] = Carbon::parse($value);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

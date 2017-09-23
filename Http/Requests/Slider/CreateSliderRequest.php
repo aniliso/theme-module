@@ -4,11 +4,20 @@ use Modules\Core\Internationalisation\BaseFormRequest;
 
 class CreateSliderRequest extends BaseFormRequest
 {
-    protected $translationsAttributesKey = 'theme::sliders.form';
+    protected $translationsAttributesKey = 'portfolio::portfolios.form';
 
     public function rules()
     {
-        return [];
+        return [
+            'ordering' => 'required|integer',
+            'position_x' => 'required|integer',
+            'position_y' => 'required|integer'
+        ];
+    }
+
+    public function attributes()
+    {
+        return trans('theme::sliders.form');
     }
 
     public function authorize()
@@ -18,6 +27,11 @@ class CreateSliderRequest extends BaseFormRequest
 
     public function messages()
     {
-        return trans('validation');
+        return [];
+    }
+
+    public function translationMessages()
+    {
+        return [];
     }
 }
