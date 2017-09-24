@@ -106,8 +106,13 @@ class SliderController extends AdminBaseController
     {
         $this->slider->update($slider, $request->all());
 
-        return redirect()->route('admin.theme.slider.index', [$slider->slide->id])
-            ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('theme::sliders.title.sliders')]));
+        if ($request->get('button') === 'index') {
+            return redirect()->route('admin.theme.slider.index', [$slider->slide->id])
+                ->withSuccess(trans('core::core.messages.resource updated', ['name' => trans('theme::sliders.title.sliders')]));
+        }
+
+        return redirect()->back()
+            ->withSuccess(trans('core::core.messages.resource updated'));
     }
 
     /**

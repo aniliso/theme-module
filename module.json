@@ -11,5 +11,6 @@
         "Modules\\Theme\\Providers\\RouteServiceProvider"
     ],
     "aliases": [],
-    "files": []
+    "files": [
+    ]
 }

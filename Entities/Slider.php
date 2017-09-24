@@ -15,8 +15,8 @@ class Slider extends Model
     use Translatable, MediaRelation, PresentableTrait;
 
     protected $table = 'theme__sliders';
-    public $translatedAttributes = ['title', 'sub_title', 'content', 'link_title', 'uri', 'target'];
-    protected $fillable = ['page_id', 'title', 'sub_title', 'content', 'link_type', 'url', 'uri', 'link_title', 'target', 'ordering', 'status', 'position_x', 'position_y', 'video', 'start_at', 'end_at', 'position_h', 'position_v'];
+    public $translatedAttributes = ['title', 'sub_title', 'content', 'link_title', 'uri'];
+    protected $fillable = ['page_id', 'title', 'sub_title', 'content', 'link_type', 'url', 'uri', 'link_title', 'target', 'ordering', 'status', 'video', 'start_at', 'end_at', 'settings', 'target'];
     protected $dates = ['start_at', 'end_at'];
 
     protected $presenter = SliderPresenter::class;
@@ -29,6 +29,17 @@ class Slider extends Model
     public function setEndAtAttribute($value)
     {
         return $this->attributes['end_at'] = Carbon::parse($value);
+    }
+
+    public function setSettingsAttribute($value)
+    {
+        return $this->attributes['settings'] = json_encode($value);
+    }
+
+    public function getSettingsAttribute()
+    {
+        $settings = json_decode($this->attributes['settings']);
+        return $settings;
     }
 
     /**

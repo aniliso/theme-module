@@ -7,9 +7,6 @@
     {!! Form::i18nTextarea("content", trans('theme::sliders.form.content'), $errors, $lang, null, ['class'=>'form-control']) !!}
 
     <div class="row link-type-depended link-external">
-        <div class="col-md-4">
-            {!! Form::i18nSelect("target", trans('theme::sliders.form.target'), $errors, $lang, $targets) !!}
-        </div>
         <div class="col-md-8">
             {!! Form::i18nInput("link_title", trans('theme::sliders.form.link_title'), $errors, $lang) !!}
         </div>

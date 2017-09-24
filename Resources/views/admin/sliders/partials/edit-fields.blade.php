@@ -19,9 +19,6 @@
                     {!! $errors->first("{$lang}[uri]", '<span class="help-block">:message</span>') !!}
                 </div>
             </div>
-            <div class="col-md-8 link-type-depended link-external">
-                {!! Form::i18nSelect("target", trans('theme::sliders.form.target'), $errors, $lang, $targets, $slider) !!}
-            </div>
         </div>
     </div>
 </div>

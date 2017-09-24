@@ -9,6 +9,7 @@ use Modules\Core\Traits\CanGetSidebarClassForModule;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Media\Image\ThumbnailManager;
 use Modules\Theme\Composer\Backend\PositionComposer;
+use Modules\Theme\Composer\Backend\ThemeAdminAssets;
 use Modules\Theme\Console\LanguagePublishCommand;
 use Modules\Theme\Events\Handlers\RegisterThemeSidebar;
 use Modules\Theme\Facades\SlideFacade;
@@ -42,6 +43,7 @@ class ThemeServiceProvider extends ServiceProvider
         );
 
         view()->composer('theme::admin.sliders.*', PositionComposer::class);
+        view()->composer(['theme::admin.sliders.edit', 'theme::admin.sliders.create'], ThemeAdminAssets::class);
     }
 
     public function boot()

@@ -9,9 +9,8 @@ class UpdateSliderRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'ordering' => 'required|integer',
-            'position_x' => 'required|integer',
-            'position_y' => 'required|integer'
+            'ordering'              => 'required|integer',
+            'settings.*'            => 'required'
         ];
     }
 

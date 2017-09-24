@@ -30,6 +30,17 @@
                         {!! Form::normalInput("video", trans('theme::sliders.form.video'), $errors) !!}
                     </div>
 
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                {!! Form::normalSelect("settings[title_font_size]", "Başlık Font Boyutu", $errors, range(1, 90, 1)) !!}
+                            </div>
+                            <div class="col-md-3">
+                                {!! Form::normalSelect("settings[content_font_size]", "İçerik Font Boyutu", $errors, range(1, 90, 1)) !!}
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                         <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>
@@ -100,37 +111,6 @@
                     </div>
                     <div class="radio">
                         <input type="radio" id="link-none" name="link_type" value="none" {{ old("link_type")=='none' ? 'checked' : '' }}><label for="link-none" {{ old("link_type")=='none' ? 'checked' : '' }}>{{ trans('theme::sliders.form.link-type.none') }}</label>
-                    </div>
-                </div>
-            </div>
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">{{ trans('theme::sliders.form.text_location') }}</h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Form::normalSelect('position_h', trans('theme::sliders.form.position_h'), $errors, $positionListH) !!}
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group{{ $errors->has("position_y") ? ' has-error' : '' }}">
-                                {!! Form::label("position_y", trans('theme::sliders.form.position_y').':') !!}
-                                {!! Form::input("text", "position_y", old("position_y", 0), ['class'=>'form-control']) !!}
-                                {!! $errors->first("position_y", '<span class="help-block">:message</span>') !!}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Form::normalSelect('position_v', trans('theme::sliders.form.position_v'), $errors, $positionListV) !!}
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group{{ $errors->has("position_x") ? ' has-error' : '' }}">
-                                {!! Form::label("position_x", trans('theme::sliders.form.position_x').':') !!}
-                                {!! Form::input("text", "position_x", old("position_x", 0), ['class'=>'form-control']) !!}
-                                {!! $errors->first("position_x", '<span class="help-block">:message</span>') !!}
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

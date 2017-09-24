@@ -30,12 +30,20 @@
                         </div>
                     @endforeach
 
-                        <div class="col-md-12">
-                            {!! Form::normalInput("video", trans('theme::sliders.form.video'), $errors, $slider) !!}
-                        </div>
+                    <div class="col-md-12">
+                        {!! Form::normalInput("video", trans('theme::sliders.form.video'), $errors, $slider) !!}
+                    </div>
+
+                    @include('theme::admin.sliders.partials.settings-fields')
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.update') }}</button>
+                        <button type="submit" class="btn btn-primary btn-flat" name="button" value="index" >
+                            <i class="fa fa-angle-left"></i>
+                            {{ trans('core::core.button.update and back') }}
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-flat">
+                            {{ trans('core::core.button.update') }}
+                        </button>
                         <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>
                         <a class="btn btn-danger pull-right btn-flat" href="{{ route('admin.theme.slider.index', [$slider->slide->id])}}"><i class="fa fa-times"></i> {{ trans('core::core.button.cancel') }}</a>
                     </div>
@@ -48,7 +56,7 @@
                     <div class="form-group{{ $errors->has("start_at") ? ' has-error' : '' }}">
                         {!! Form::label("start_at", trans('theme::sliders.form.start_at').':') !!}
                         <div class='input-group date' id='start_at'>
-                            <input type="text" class="form-control" name="start_at" value="{{ old('start_at', $slider->start_at->format('d.m.Y H:i')) }}" />
+                            <input type="text" class="form-control" name="start_at" value="{{ old('start_at', $slider->start_at->format('d.m.Y H:i')) }}"/>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         {!! $errors->first("start_at", '<span class="help-block">:message</span>') !!}
@@ -57,7 +65,7 @@
                     <div class="form-group{{ $errors->has("end_at") ? ' has-error' : '' }}">
                         {!! Form::label("end_at", trans('theme::sliders.form.end_at').':') !!}
                         <div class='input-group date' id='end_at'>
-                            <input type="text" class="form-control" name="end_at" value="{{ old('end_at', $slider->end_at->format('d.m.Y H:i')) }}" />
+                            <input type="text" class="form-control" name="end_at" value="{{ old('end_at', $slider->end_at->format('d.m.Y H:i')) }}"/>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                         </div>
                         {!! $errors->first("end_at", '<span class="help-block">:message</span>') !!}
@@ -70,7 +78,7 @@
                         {!! Form::checkbox('status', 1, old('status', $slider->status), ['class'=>'flat-blue']) !!}
                         {!! Form::label('status', trans('theme::sliders.form.status')) !!}
                     </div>
-                    <hr />
+                    <hr/>
                     @mediaSingle('sliderImage', $slider, null, trans('theme::sliders.form.image'))
                 </div>
             </div>
@@ -84,6 +92,8 @@
                     </div>
                     <div class="form-group link-type-depended link-external">
                         {!! Form::normalInput("url", trans('theme::sliders.form.url'), $errors, $slider) !!}
+
+                        {!! Form::normalSelect("target", trans('theme::sliders.form.target'), $errors, $targets) !!}
                     </div>
                     <div class="radio">
                         <input type="radio" id="link-page" name="link_type" value="page" {{ $slider->link_type === 'page' ? ' checked' : '' }}><label for="link-page">{{ trans('theme::sliders.form.link-type.page') }}</label>
@@ -97,27 +107,26 @@
                     <div class="radio">
                         <input type="radio" id="link-none" name="link_type" value="none" {{ $slider->link_type === 'none' ? ' checked' : '' }}><label for="link-none">{{ trans('theme::sliders.form.link-type.none') }}</label>
                     </div>
-                </div>
-            </div>
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">{{ trans('theme::sliders.form.text_location') }}</h3>
-                </div>
-                <div class="box-body">
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Form::normalSelect('position_h', trans('theme::sliders.form.position_h'), $errors, $positionListH, $slider) !!}
+                            <div class="form-group{{ $errors->has("settings.link_position_x") ? ' has-error' : '' }}">
+                                {!! Form::label("settings.link_position_x", "Yatay Boşluk".':') !!}
+                                {!! Form::input('text', 'settings[link_position_x]', !isset($slider->settings->link_position_x) ?: $slider->settings->link_position_x, ['class'=>'form-control']) !!}
+                                {!! $errors->first("settings.link_position_x", '<span class="help-block">:message</span>') !!}
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            {!! Form::normalInput("position_x", trans('theme::sliders.form.position_x'), $errors, $slider) !!}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            {!! Form::normalSelect('position_v', trans('theme::sliders.form.position_v'), $errors, $positionListV, $slider) !!}
+                            {!! Form::normalSelect("settings[link_position_h]", "Yatay Pozisyon", $errors, array('left'=>'Sol', 'center'=>'Orta', 'right'=>'Sağ'), isset($slider->settings->link_position_h) ? $slider->settings->link_position_h : null) !!}
                         </div>
                         <div class="col-md-6">
-                            {!! Form::normalInput("position_y", trans('theme::sliders.form.position_y'), $errors, $slider) !!}
+                            <div class="form-group{{ $errors->has("settings.link_position_y") ? ' has-error' : '' }}">
+                                {!! Form::label("settings.link_position_y", "Dikey Boşluk".':') !!}
+                                {!! Form::input('text', 'settings[link_position_y]', !isset($slider->settings->link_position_y) ?: $slider->settings->link_position_y, ['class'=>'form-control']) !!}
+                                {!! $errors->first("settings.link_position_y", '<span class="help-block">:message</span>') !!}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            {!! Form::normalSelect("settings[link_position_v]", "Dikey Pozisyon", $errors, array('Top'=>'Üst', 'center'=>'Orta', 'bottom'=>'Aşağı'), isset($slider->settings->link_position_v) ? $slider->settings->link_position_v : null) !!}
                         </div>
                     </div>
                 </div>
@@ -139,25 +148,25 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $(document).keypressAction({
                 actions: [
-                    { key: 'b', route: "<?= route('admin.theme.slider.index', [$slider->slide->id]) ?>" }
+                    {key: 'b', route: "<?= route('admin.theme.slider.index', [$slider->slide->id]) ?>"}
                 ]
             });
         });
     </script>
     <script>
-        $( document ).ready(function() {
+        $(document).ready(function () {
             $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
                 checkboxClass: 'icheckbox_flat-blue',
                 radioClass: 'iradio_flat-blue'
             });
-            $('input[type="checkbox"]').on('ifChecked', function(){
+            $('input[type="checkbox"]').on('ifChecked', function () {
                 $(this).parent().find('input[type=hidden]').remove();
             });
 
-            $('input[type="checkbox"]').on('ifUnchecked', function(){
+            $('input[type="checkbox"]').on('ifUnchecked', function () {
                 var name = $(this).attr('name'),
                         input = '<input type="hidden" name="' + name + '" value="0" />';
                 $(this).parent().append(input);
@@ -168,9 +177,9 @@
             $('[name="link_type"]').iCheck({
                 checkboxClass: 'icheckbox_minimal',
                 radioClass: 'iradio_flat-blue'
-            }).on('ifChecked',function(){
+            }).on('ifChecked', function () {
                 $('.link-type-depended').hide();
-                $('.link-'+$(this).val()).fadeIn();
+                $('.link-' + $(this).val()).fadeIn();
             });
             $('#start_at').datetimepicker({
                 locale: '<?= App::getLocale() ?>',
