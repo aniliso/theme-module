@@ -1,21 +1,10 @@
 <?php namespace Modules\Theme\Presenters;
 
-use Laracasts\Presenter\Presenter;
+use Modules\Core\Presenters\BasePresenter;
 
-class SliderPresenter extends Presenter
+class SliderPresenter extends BasePresenter
 {
-    public function __construct($entity)
-    {
-        parent::__construct($entity);
-    }
-
-    public function firstImage($width, $height, $mode, $quality)
-    {
-        if($file = $this->entity->files()->first()) {
-            return \Imagy::getImage($file->filename, 'sliderImage', ['width' => $width, 'height' => $height, 'mode' => $mode, 'quality' => $quality]);
-        }
-        return null;
-    }
+    protected $zone     = 'sliderImage';
 
     public function link()
     {
