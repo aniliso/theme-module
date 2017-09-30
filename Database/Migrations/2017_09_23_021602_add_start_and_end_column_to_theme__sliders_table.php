@@ -15,8 +15,8 @@ class AddStartAndEndColumnToThemeSlidersTable extends Migration
     public function up()
     {
         Schema::table('theme__sliders', function (Blueprint $table) {
-            $table->dateTime('start_at')->default(DB::raw('NOW()'));
-            $table->dateTime('end_at')->default(DB::raw('NOW()'));
+            $table->dateTime('start_at')->default(Carbon::now()->hour(0)->minute(0));
+            $table->dateTime('end_at')->default(Carbon::now()->hour(0)->minute(0));
         });
     }
 
