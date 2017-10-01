@@ -30,16 +30,7 @@
                         {!! Form::normalInput("video", trans('theme::sliders.form.video'), $errors) !!}
                     </div>
 
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                {!! Form::normalSelect("settings[title_font_size]", "Başlık Font Boyutu", $errors, range(1, 90, 1)) !!}
-                            </div>
-                            <div class="col-md-3">
-                                {!! Form::normalSelect("settings[content_font_size]", "İçerik Font Boyutu", $errors, range(1, 90, 1)) !!}
-                            </div>
-                        </div>
-                    </div>
+                    @include('theme::admin.sliders.partials.settings-fields')
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>

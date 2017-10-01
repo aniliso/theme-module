@@ -4,12 +4,13 @@ use Modules\Core\Internationalisation\BaseFormRequest;
 
 class CreateSlideRequest extends BaseFormRequest
 {
+    protected $translationsAttributesKey = 'theme::sliders.form';
 
     public function rules()
     {
         return [
-          'name' => 'required',
-          'slug'  => 'required'
+            'ordering'              => 'required|integer',
+            'settings.*'            => 'required'
         ];
     }
 
