@@ -3,10 +3,12 @@
 namespace Modules\Theme\Entities;
 
 use Dimsav\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 use Modules\Media\Support\Traits\MediaRelation;
 use Modules\Page\Entities\Page;
+use Modules\Theme\Entities\Helpers\Status;
 use Modules\Theme\Presenters\SliderPresenter;
 use Carbon\Carbon;
 
@@ -94,5 +96,20 @@ class Slider extends Model
             default:
         }
         return $link;
+    }
+
+    public function scopeDraft(Builder $query)
+    {
+        return $query->whereStatus(Status::DRAFT);
+    }
+
+    public function scopePublished(Builder $query)
+    {
+        return $query->whereStatus(Status::PUBLISHED);
+    }
+
+    public function scopeBeetweenDates($query)
+    {
+        return $query->whereRaw('NOW() BETWEEN start_at and end_at');
     }
 }

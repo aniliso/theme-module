@@ -13,7 +13,9 @@ class Slide extends Model
 
     public function sliders()
     {
-        return $this->hasMany(Slider::class)->whereStatus(Status::PUBLISHED)->orderBy('ordering', 'asc');
+        return $this->hasMany(Slider::class)
+                    ->with(['files','translations'])
+                    ->orderBy('ordering', 'asc');
     }
 
     public function scopeDraft(Builder $query)

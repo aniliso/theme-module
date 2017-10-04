@@ -15,10 +15,6 @@ class EloquentSlideRepository extends EloquentBaseRepository implements SlideRep
     {
         return $this->model
             ->where('slug', "$slug")
-            ->whereHas('sliders', function (Builder $q) {
-                $q->where('start_at', '<=', Carbon::now())
-                  ->where('end_at', '>=', Carbon::now());
-            })
             ->with('sliders')->whereStatus(Status::PUBLISHED)->first();
     }
 

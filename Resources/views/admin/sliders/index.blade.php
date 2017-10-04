@@ -32,6 +32,8 @@
                             <th>{{ trans('theme::sliders.form.ordering') }}</th>
                             <th>{{ trans('theme::sliders.form.image') }}</th>
                             <th>{{ trans('theme::sliders.form.title') }}</th>
+                            <th>{{ trans('theme::sliders.form.start_at') }}</th>
+                            <th>{{ trans('theme::sliders.form.end_at') }}</th>
                             <th>{{ trans('core::core.table.created at') }}</th>
                             <th data-sortable="false">{{ trans('core::core.table.actions') }}</th>
                         </tr>
@@ -56,6 +58,16 @@
                             <td>
                                 <a href="{{ route('admin.theme.slider.edit', [$slider->id]) }}">
                                     {{ $slider->title }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.theme.slider.edit', [$slider->id]) }}">
+                                    {{ $slider->start_at->format('d.m.Y H:i') }}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.theme.slider.edit', [$slider->id]) }}">
+                                    {{ $slider->end_at->format('d.m.Y H:i') }}
                                 </a>
                             </td>
                             <td>

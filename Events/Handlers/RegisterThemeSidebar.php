@@ -19,7 +19,7 @@ class RegisterThemeSidebar extends AbstractAdminSidebar
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
             $group->item(trans('theme::themes.title.theme'), function (Item $item) {
                 $item->icon('fa fa-sliders');
-                $item->weight(10);
+                $item->weight(50);
                 $item->authorize(
                     $this->auth->hasAccess('theme.slides.index')
                 );
