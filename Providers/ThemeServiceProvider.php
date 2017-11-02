@@ -31,6 +31,11 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->extend('asgard.ModulesList', function($app) {
+            array_push($app, 'theme');
+            return $app;
+        });
+
         $this->registerBindings();
         $this->registerWidgets();
         $this->registerFacade();
