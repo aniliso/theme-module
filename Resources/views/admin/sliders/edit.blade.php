@@ -18,7 +18,7 @@
 @section('content')
     {!! Form::open(['route' => ['admin.theme.slider.update', $slider->id], 'method' => 'put']) !!}
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-9">
             <div class="nav-tabs-custom">
                 @include('partials.form-tab-headers')
                 <div class="tab-content">
@@ -34,8 +34,6 @@
                         {!! Form::normalInput("video", trans('theme::sliders.form.video'), $errors, $slider) !!}
                     </div>
 
-                    @include('theme::admin.sliders.partials.settings-fields')
-
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat" name="button" value="index" >
                             <i class="fa fa-angle-left"></i>
@@ -50,7 +48,10 @@
                 </div>
             </div> {{-- end nav-tabs-custom --}}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
+
+            @include('theme::admin.sliders.partials.settings-fields')
+
             <div class="box box-primary">
                 <div class="box-body">
                     <div class="form-group{{ $errors->has("start_at") ? ' has-error' : '' }}">
@@ -106,28 +107,6 @@
                     </div>
                     <div class="radio">
                         <input type="radio" id="link-none" name="link_type" value="none" {{ $slider->link_type === 'none' ? ' checked' : '' }}><label for="link-none">{{ trans('theme::sliders.form.link-type.none') }}</label>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group{{ $errors->has("settings.link_position_x") ? ' has-error' : '' }}">
-                                {!! Form::label("settings.link_position_x", "Yatay Boşluk".':') !!}
-                                {!! Form::input('text', 'settings[link_position_x]', !isset($slider->settings->link_position_x) ?: $slider->settings->link_position_x, ['class'=>'form-control']) !!}
-                                {!! $errors->first("settings.link_position_x", '<span class="help-block">:message</span>') !!}
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            {!! Form::normalSelect("settings[link_position_h]", "Yatay Pozisyon", $errors, array('left'=>'Sol', 'center'=>'Orta', 'right'=>'Sağ'), isset($slider->settings->link_position_h) ? $slider->settings->link_position_h : null) !!}
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group{{ $errors->has("settings.link_position_y") ? ' has-error' : '' }}">
-                                {!! Form::label("settings.link_position_y", "Dikey Boşluk".':') !!}
-                                {!! Form::input('text', 'settings[link_position_y]', !isset($slider->settings->link_position_y) ?: $slider->settings->link_position_y, ['class'=>'form-control']) !!}
-                                {!! $errors->first("settings.link_position_y", '<span class="help-block">:message</span>') !!}
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            {!! Form::normalSelect("settings[link_position_v]", "Dikey Pozisyon", $errors, array('Top'=>'Üst', 'center'=>'Orta', 'bottom'=>'Aşağı'), isset($slider->settings->link_position_v) ? $slider->settings->link_position_v : null) !!}
-                        </div>
                     </div>
                 </div>
             </div>

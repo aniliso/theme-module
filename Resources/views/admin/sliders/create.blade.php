@@ -30,8 +30,6 @@
                         {!! Form::normalInput("video", trans('theme::sliders.form.video'), $errors) !!}
                     </div>
 
-                    @include('theme::admin.sliders.partials.settings-fields')
-
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary btn-flat">{{ trans('core::core.button.create') }}</button>
                         <button class="btn btn-default btn-flat" name="button" type="reset">{{ trans('core::core.button.reset') }}</button>
@@ -41,6 +39,9 @@
             </div> {{-- end nav-tabs-custom --}}
         </div>
         <div class="col-md-3">
+
+            @include('theme::admin.sliders.partials.settings-fields')
+
             <div class="box box-primary">
                 <div class="box-body">
 
@@ -69,7 +70,6 @@
                         {!! Form::input("text", "ordering", old("ordering", 0), ['class'=>'form-control']) !!}
                         {!! $errors->first("ordering", '<span class="help-block">:message</span>') !!}
                     </div>
-
                     <div class="form-group">
                         {!! Form::hidden('status', 0) !!}
                         {!! Form::checkbox('status', 1, old('status'), ['class'=>'flat-blue']) !!}
