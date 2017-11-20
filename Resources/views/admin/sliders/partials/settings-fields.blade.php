@@ -107,7 +107,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group{{ $errors->has("settings.title_color") ? ' has-error' : '' }}">
                                             {!! Form::label("settings.title_color", "Renk".':') !!}
-                                            {!! Form::input('text', 'settings[title_color]', !isset($slider->settings->title_color) ? '#cf1a1a' : $slider->settings->title_color, ['class'=>'form-control colorpicker']) !!}
+                                            {!! Form::input('text', 'settings[title_color]', !isset($slider->settings->title_color) ? '#ffffff' : $slider->settings->title_color, ['class'=>'form-control colorpicker']) !!}
                                             {!! $errors->first("settings.title_color", '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group{{ $errors->has("settings.content_color") ? ' has-error' : '' }}">
                                             {!! Form::label("settings.content_color", "Renk".':') !!}
-                                            {!! Form::input('text', 'settings[content_color]', !isset($slider->settings->content_color) ? '#4d4d4d' : $slider->settings->content_color, ['class'=>'form-control colorpicker']) !!}
+                                            {!! Form::input('text', 'settings[content_color]', !isset($slider->settings->content_color) ? '#ffffff' : $slider->settings->content_color, ['class'=>'form-control colorpicker']) !!}
                                             {!! $errors->first("settings.content_color", '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
@@ -190,24 +190,31 @@
                             <legend>Link Ayarları</legend>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
+                                        <div class="form-group{{ $errors->has("settings.link_color") ? ' has-error' : '' }}">
+                                            {!! Form::label("settings.link_color", "Renk".':') !!}
+                                            {!! Form::input('text', 'settings[link_color]', !isset($slider->settings->link_color) ? '#ffffff' : $slider->settings->link_color, ['class'=>'form-control colorpicker']) !!}
+                                            {!! $errors->first("settings.link_color", '<span class="help-block">:message</span>') !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
                                         <div class="form-group{{ $errors->has("settings.link_position_x") ? ' has-error' : '' }}">
                                             {!! Form::label("settings.link_position_x", "Yatay Boşluk".':') !!}
                                             {!! Form::input('text', 'settings[link_position_x]', !isset($slider->settings->link_position_x) ?: $slider->settings->link_position_x, ['class'=>'form-control']) !!}
                                             {!! $errors->first("settings.link_position_x", '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         {!! Form::normalSelect("settings[link_position_h]", "Yatay Pozisyon", $errors, array('left'=>'Sol', 'center'=>'Orta', 'right'=>'Sağ'), isset($slider->settings->link_position_h) ? $slider->settings->link_position_h : null) !!}
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         <div class="form-group{{ $errors->has("settings.link_position_y") ? ' has-error' : '' }}">
                                             {!! Form::label("settings.link_position_y", "Dikey Boşluk".':') !!}
                                             {!! Form::input('text', 'settings[link_position_y]', !isset($slider->settings->link_position_y) ?: $slider->settings->link_position_y, ['class'=>'form-control']) !!}
                                             {!! $errors->first("settings.link_position_y", '<span class="help-block">:message</span>') !!}
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-2">
                                         {!! Form::normalSelect("settings[link_position_v]", "Dikey Pozisyon", $errors, array('Top'=>'Üst', 'center'=>'Orta', 'bottom'=>'Aşağı'), isset($slider->settings->link_position_v) ? $slider->settings->link_position_v : null) !!}
                                     </div>
                                 </div>
