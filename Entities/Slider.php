@@ -80,7 +80,7 @@ class Slider extends Model
         {
             case 'page':
                 $link->title = $this->getAttribute('link_title');
-                $link->url = route('page', [$this->page->slug]);
+                $link->url = route('page', [$this->page->uri]);
                 break;
             case 'internal':
                 $link->title = $this->getAttribute('link_title');
