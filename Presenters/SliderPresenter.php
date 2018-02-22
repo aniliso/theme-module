@@ -6,7 +6,7 @@ class SliderPresenter extends BasePresenter
 {
     protected $zone     = 'sliderImage';
 
-    public function settings($type = '', $field1='', $field2='', $default='', $encode=false)
+    public function settings($type = '', $field1='', $field2='', $default='', $encode=false, $stepmode=0)
     {
         switch ($this->entity->settings) {
             case $type == 'range':
@@ -16,6 +16,10 @@ class SliderPresenter extends BasePresenter
                 if($low && $high) {
                     return $encode ? json_encode(range($low, $high, $step)) : range($low, $high, $step);
                 } elseif ($low && $high==false) {
+                    if($stepmode>0) {
+                        $step = $stepmode / 4;
+                        return $encode ? json_encode(range($low, $low+$stepmode, $step)) : range($low, $low+$stepmode, $step);
+                    }
                     return $encode ? json_encode(range($low, $step, $step)) : range($low, $step, $step);
                 } else {
                     return null;

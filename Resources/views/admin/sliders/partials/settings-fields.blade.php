@@ -14,8 +14,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group{{ $errors->has("settings.delay") ? ' has-error' : '' }}">
-                                {!! Form::label("settings.delay", "Bekleme Süresi".':') !!}
-                                {!! Form::input('text', 'settings[delay]', !isset($slider->settings->delay) ? 4000 : $slider->settings->delay, ['class'=>'form-control']) !!}
+                                {!! Form::label("settings.delay", "Bekleme Süresi (sn)".':') !!}
+                                {!! Form::input('text', 'settings[delay]', !isset($slider->settings->delay) ? 4 : $slider->settings->delay, ['class'=>'form-control']) !!}
                                 {!! $errors->first("settings.delay", '<span class="help-block">:message</span>') !!}
                             </div>
                             <fieldset>
