@@ -12,11 +12,12 @@ class SliderWidget
         $this->slide = $slide;
     }
 
-    public function slide($slug)
+    public function slide($slug="anasayfa")
     {
         if($slide = $this->slide->findBySlug($slug))
         {
-            return view('widgets.slider.slide', compact('slide'));
+            $slides = $slide->sliders()->published()->beetweendates()->get();
+            return view('theme::widgets.slide', compact('slides'));
         }
         return null;
     }
