@@ -39,7 +39,7 @@ class SliderPresenter extends BasePresenter
         {
             case 'page':
                 $link->title = $this->entity->link_title;
-                $link->url = route('page', [$this->entity->page->uri]);
+                $link->url = $this->entity->page->url;
                 break;
             case 'internal':
                 $link->title = $this->entity->link_title;
