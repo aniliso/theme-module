@@ -53,6 +53,7 @@ class ThemeServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        $this->publishConfig('theme', 'config');
         $this->publishConfig('theme', 'permissions');
         $this->publishConfig('theme', 'settings');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
