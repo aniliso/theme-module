@@ -15,4 +15,5 @@ return [
     'youtube'      => 'Youtube',
     'vimeo'        => 'Vimeo',
     'instagram'    => 'Instagram',
+    'whatsapp'     => 'Whatsapp'
 ];
