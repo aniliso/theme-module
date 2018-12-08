@@ -119,7 +119,7 @@ class ThemeServiceProvider extends ServiceProvider
 
     private function registerPresenters()
     {
-        if(env('APP_KEY')) {
+        if(config('app.key')) {
             $template = setting('core::template');
             $this->loadTranslationsFrom(base_path("Themes/{$template}/lang"), 'themes');
             foreach (\File::glob(base_path("Themes/{$template}/presenter/*.php")) as $filename) {
