@@ -43,7 +43,7 @@ class SliderPresenter extends BasePresenter
                 break;
             case 'internal':
                 $link->title = $this->entity->link_title;
-                $link->url = url($this->entity->uri);
+                $link->url = localize_url(locale(), $this->entity->uri);
                 break;
             case 'external':
                 $link->title = $this->entity->link_title;
